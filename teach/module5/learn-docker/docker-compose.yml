@@ -1,0 +1,18 @@
+version: '3'
+services:
+  product-service:
+    build: ./angular-exam-server
+    volumes:
+      - ./angular-exam-server:/usr/src/app
+    ports:
+      - 5001:3000
+  website:
+    image: nginx:alpine
+    volumes:
+      - ./website:/usr/share/nginx/html
+    ports:
+      - 5002:80
+    depends_on:
+      - product-service
+
+
